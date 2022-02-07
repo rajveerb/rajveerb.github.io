@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/defaultBackground.css">
+        <title>Rajveer's site</title>
+    </head>
+<body>
+    <div id="body-container" style="margin:2%; padding:1%;">
+        <h1>
+            Azure VM persistence issues when shut down is triggered.
+        </h1>
+        <br>
+        <h5>
+            6 Feb 2022 
+        </h5>
+        <br>
+
+        Azure VM disk's offer some disk caching options, namely:
+        <ul>
+            <li>Read/Write</li>
+            <li>Read-only</li>
+            <li>None</li>
+        </ul>
+
+        Detailed description can be found 
+        <a class="hover" href="https://docs.microsoft.com/en-us/learn/modules/caching-and-performance-azure-storage-and-disks/3-enable-and-configure-azure-vm-disk-cache-by-using-the-azure-portal">
+            here
+        </a>.
+        
+        Some context:
+        <br>
+        I was using Azure's VM (Linux) with Read/write mode, big mistake. 
+        I used it as a work machine and connected vis SSH over VSCode.
+        I wrote some code, saved it, but I didn't push to GitHub, I know it was a mistake, usually I do not do this.
+        From the desciption of Read/Write mode, it is the responsibility of the application to flush the cache. 
+        So, VSCode did not call fsync correctly as a consequence I lost my data from the disk when I shut down the VM. 
+        <br>
+        This is a note to other people to make sure your application handles syncing of disk and memory if you decide to use Read/Write mode. 
+        <br>
+        Related issues:
+        <br>
+        Someone else mentioned something similar to this in Windows VM by Azure over 
+        <a class="hover" href="https://github.com/MicrosoftDocs/azure-docs/issues/39740">
+            here
+        </a>.
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
+</body>
+</html>
