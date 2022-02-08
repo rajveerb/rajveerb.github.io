@@ -39,13 +39,13 @@
         <br>
         Some context:
         <br>
-        I was using Azure's VM (Linux) with Read/write mode, big mistake. 
-        I used it as a work machine and connected vis SSH over VSCode.
-        I wrote some code, saved it, but I didn't push to GitHub, I know it was a mistake, usually I do not do this.
+        I was using Azure's VM (Linux) with Read/Write mode, big mistake! 
+        I used it as a work machine and connected to the VM via SSH over VSCode.
+        I wrote some code, saved it, but I didn't push it to GitHub, I know it was a mistake, usually I do not do this.
         From the desciption of Read/Write mode, it is the responsibility of the application to flush the cache. 
-        So, VSCode did not call fsync correctly as a consequence I lost my data from the disk when I shut down the VM. 
+        So, VSCode did not call fsync, this is my assumption, correctly as a consequence I lost my data from the disk when I shut down the VM. 
         <br>
-        This is a note to other people to make sure your application handles syncing of disk and memory if you decide to use Read/Write mode. 
+        This is a note to other people to make sure your application handles syncing of disk and memory if you decide to use Read/Write mode in Azure VM's in the future. 
         <br>
         Related issues:
         <br>
